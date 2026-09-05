@@ -147,16 +147,49 @@ async function checkOnboarding() {
   }
 
   try {
-    const res = await fetch(`${FUTURA_CONFIG.API_BASE_URL}/api/profile`, {
-      headers: { 'Authorization': `Bearer ${session.access_token}` }
-    });
+    let profile = null;
+    let is404 = false;
 
-    if (res.status === 404) {
+    // 1. Attempt API fetch
+    try {
+      const res = await fetch(`${FUTURA_CONFIG.API_BASE_URL}/api/profile`, {
+        headers: { 'Authorization': `Bearer ${session.access_token}` }
+      });
+      if (res.status === 404) {
+        is404 = true;
+      } else if (res.ok) {
+        const data = await res.json();
+        profile = data.profile;
+      }
+    } catch (fetchErr) {
+      console.warn('API backend unreachable, querying Supabase directly:', fetchErr.message);
+    }
+
+    // 2. Direct Supabase fallback if API was offline or didn't return profile
+    if (!profile && !is404) {
+      try {
+        const { data: dbProfile, error: dbErr } = await getSupabase()
+          .from('profiles')
+          .select('*')
+          .eq('id', session.user.id)
+          .maybeSingle();
+
+        if (dbProfile) {
+          profile = dbProfile;
+        } else if (!dbErr) {
+          is404 = true;
+        }
+      } catch (dbEx) {
+        console.warn('Direct Supabase profile query failed:', dbEx);
+      }
+    }
+
+    if (is404 || !profile) {
       const urlParams = new URLSearchParams(window.location.search);
       const isNewLogin = urlParams.has('auth_callback') || window.location.hash.includes('access_token');
       const isOnboardingPage = currentPath.includes('onboarding_');
 
-      if (isNewLogin || isOnboardingPage) {
+      if (isNewLogin || isOnboardingPage || session) {
         if (!isOnboardingPage) {
           window.location.href = 'onboarding_step_1_age.html';
         }
@@ -171,8 +204,6 @@ async function checkOnboarding() {
       }
     }
 
-    if (!res.ok) throw new Error('Failed to fetch profile');
-    const { profile } = await res.json();
     _profileVerified = true;
 
     const isOnboarded = profile && profile.onboarding_complete;
@@ -199,7 +230,7 @@ async function checkOnboarding() {
       // If NOT onboarded and NOT already on an onboarding page, send to Step 1
       if (!currentPath.includes('onboarding_')) {
         const protectedPaths = ['dashboard_', 'market_', 'assets_', 'index.html', 'landing_'];
-        const isProtected = protectedPaths.some(p => currentPath.includes(p)) || currentPath === '/';
+        const isProtected = protectedPaths.some(p => currentPath.includes(p)) || currentPath === '/' || currentPath === '';
 
         if (isProtected) {
           window.location.href = 'onboarding_step_1_age.html';

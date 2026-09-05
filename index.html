@@ -314,7 +314,9 @@
   <script>
     // Robust Visibility Control: Hide sign-in button immediately if session detected
     (function () {
-      const projectRef = 'oorxjgzhscczvflvjwlk';
+      const projectRef = (typeof FUTURA_CONFIG !== 'undefined' && FUTURA_CONFIG.SUPABASE_URL)
+        ? FUTURA_CONFIG.SUPABASE_URL.replace('https://', '').split('.')[0]
+        : 'cduuhdhpgcczdtomgsfy';
       const storageKey = `sb-${projectRef}-auth-token`;
       const sessionStr = localStorage.getItem(storageKey);
 

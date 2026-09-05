@@ -8,6 +8,6 @@ port = 8789
 ip = "0.0.0.0"
 
 [vars]
-SUPABASE_URL = "https://oorxjgzhscczvflvjwlk.supabase.co"
-SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9vcnhqZ3poc2NjenZmbHZqd2xrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2NzI3NDQsImV4cCI6MjA5MDI0ODc0NH0.ak6sk5um7X4dzmEuI8IcBAno7xvsdPiSw5Ebs_SxOek"
-FRONTEND_ORIGIN = "http://127.0.0.1:5500"
+SUPABASE_URL = "https://cduuhdhpgcczdtomgsfy.supabase.co"
+SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNkdXVoZGhwZ2NjemR0b21nc2Z5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg2MjQ3NDQsImV4cCI6MjEwNDIwMDc0NH0.vWW44Vul1FUpAZc2zNwkJwZXzI-WtzhwNrUEib-1MYU"
+FRONTEND_ORIGIN = "*"

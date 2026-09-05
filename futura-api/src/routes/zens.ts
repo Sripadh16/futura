@@ -34,7 +34,9 @@ router.post('/purchase', zValidator('json', purchaseSchema), async (c) => {
   const { razorpay_payment_id } = c.req.valid('json')
 
   // Verify the payment with Razorpay API
-  const credentials = btoa(`${c.env.RAZORPAY_KEY_ID}:${c.env.RAZORPAY_KEY_SECRET}`)
+  const keyId = (c.env.RAZORPAY_KEY_ID || '').trim()
+  const keySecret = (c.env.RAZORPAY_KEY_SECRET || '').trim()
+  const credentials = btoa(`${keyId}:${keySecret}`)
   const rzpRes = await fetch(
     `https://api.razorpay.com/v1/payments/${encodeURIComponent(razorpay_payment_id)}`,
     {

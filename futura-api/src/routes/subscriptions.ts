@@ -16,7 +16,9 @@ router.post('/purchase-elite', zValidator('json', purchaseSchema), async (c) => 
   const userId = c.get('userId')
   const { razorpay_payment_id } = c.req.valid('json')
 
-  const credentials = btoa(`${c.env.RAZORPAY_KEY_ID}:${c.env.RAZORPAY_KEY_SECRET}`)
+  const keyId = (c.env.RAZORPAY_KEY_ID || '').trim()
+  const keySecret = (c.env.RAZORPAY_KEY_SECRET || '').trim()
+  const credentials = btoa(`${keyId}:${keySecret}`)
   const rzpRes = await fetch(
     `https://api.razorpay.com/v1/payments/${encodeURIComponent(razorpay_payment_id)}`,
     {

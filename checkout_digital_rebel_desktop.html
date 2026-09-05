@@ -648,7 +648,7 @@
                     btnCheckout.style.pointerEvents = 'none';
 
                     const options = {
-                        key: FUTURA_CONFIG.RAZORPAY_KEY_ID,
+                        key: (FUTURA_CONFIG.RAZORPAY_KEY_ID || '').trim(),
                         amount: 19900,
                         currency: 'INR',
                         name: 'Digital Rebel',

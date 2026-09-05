@@ -356,7 +356,7 @@ async function buyZens(onSuccess) {
 
 function initiateRazorpayPurchase(amountINR, zensExpected, onSuccess) {
   const options = {
-    key: FUTURA_CONFIG.RAZORPAY_KEY_ID,
+    key: (FUTURA_CONFIG.RAZORPAY_KEY_ID || '').trim(),
     amount: amountINR * 100, // INR to paise
     currency: 'INR',
     name: 'Digital Rebel',
