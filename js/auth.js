@@ -504,9 +504,6 @@ async function updateNavAuth() {
     }
   }
 
-  // Connect Wallet logic removed
-
-  // Populate Zens Balance in Nav if applicable
   // Populate Zens Balance in Nav if applicable
   if (session) {
     const zensPills = document.querySelectorAll('#nav-zens-balance, [id*="zens-balance"]');

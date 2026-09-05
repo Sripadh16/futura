@@ -368,9 +368,6 @@
                     const userNameEl = document.getElementById('sidebar-user-name');
                     if (userNameEl) userNameEl.textContent = goal.email.split('@')[0];
                 }
-
-                // Hydrate Elite Sidebar
-
             } catch (err) {
                 console.error('Failed to hydrate sidebar:', err);
             }

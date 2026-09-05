@@ -707,9 +707,6 @@
           if (userNameEl) userNameEl.textContent = goal.email.split('@')[0];
         }
 
-        // Hydrate Elite Sidebar
-
-
         const res = await futuraApi.contributions.list();
         const apiContribs = res.contributions || [];
 
