@@ -10,4 +10,6 @@ ip = "0.0.0.0"
 [vars]
 SUPABASE_URL = "https://cduuhdhpgcczdtomgsfy.supabase.co"
 SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNkdXVoZGhwZ2NjemR0b21nc2Z5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg2MjQ3NDQsImV4cCI6MjEwNDIwMDc0NH0.vWW44Vul1FUpAZc2zNwkJwZXzI-WtzhwNrUEib-1MYU"
+RAZORPAY_KEY_ID = "rzp_test_TGCtM3iz8RakR1"
 FRONTEND_ORIGIN = "*"
+
