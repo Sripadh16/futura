@@ -53,7 +53,6 @@ export default function UpgradePage() {
   }
 
   return (
-  return (
     <main style={{ padding: '2rem', maxWidth: '600px', margin: '0 auto', fontFamily: 'sans-serif' }}>
       <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>Upgrade to Futura Pro</h1>
 
