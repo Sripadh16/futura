@@ -8,9 +8,9 @@ import type { Env, Variables } from '../types'
 const router = new Hono<{ Bindings: Env; Variables: Variables }>()
 
 const projectionSchema = z.object({
-  currentAge: z.number().int().min(18).max(100),
-  retirementAge: z.number().int().min(40).max(90),
-  lifeExpectancy: z.number().int().min(60).max(120).default(80),
+  currentAge: z.number().int().min(10).max(100),
+  retirementAge: z.number().int().min(18).max(120),
+  lifeExpectancy: z.number().int().min(40).max(150).default(80),
   monthlyIncome: z.number().min(0),
   monthlyExpense: z.number().min(0),
   currentSavings: z.number().min(0).default(0),

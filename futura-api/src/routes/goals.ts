@@ -7,9 +7,9 @@ import type { Env, Variables } from '../types'
 const router = new Hono<{ Bindings: Env; Variables: Variables }>()
 
 const goalsSchema = z.object({
-  current_age: z.number().int().min(18).max(100),
-  retirement_age: z.number().int().min(40).max(100),
-  target_monthly_income: z.number().positive().max(10000000),
+  current_age: z.number().int().min(10).max(100),
+  retirement_age: z.number().int().min(18).max(120),
+  target_monthly_income: z.number().positive().max(1000000000),
   annual_return_rate: z.number().min(0).max(1).optional(),
   risk_profile: z.enum(['conservative', 'moderate', 'aggressive']).optional()
 })
